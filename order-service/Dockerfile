@@ -2,10 +2,10 @@
 FROM maven:3.9.9-eclipse-temurin-17 AS build
 WORKDIR /app
 # Copy only pom first (for caching)
-COPY hackathon-usecase/order-service/pom.xml .
+COPY pom.xml .
 RUN mvn -B -q -e -DskipTests dependency:go-offline
 # Copy source
-COPY hackathon-usecase/order-service/src ./src
+COPY src ./src
 # Build jar
 RUN mvn clean package -DskipTests
 
